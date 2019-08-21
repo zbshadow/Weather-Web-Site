@@ -11,7 +11,6 @@ body {
     flex-direction: column;
     align-items: center;
     background: linear-gradient(rgb(47,150,163), rgb(48,62,143));
-    /*background: linear-gradient(rgb(89,0,179), rgb(38,0,77));*/
     font-family: sans-serif;
     color: white;
 }
@@ -24,8 +23,20 @@ body {
     align-items: center;
 }
 
+.location-timezone {
+    width: 70vh;
+}
+
+.icon {
+    padding: 12x;
+}
+
 .temperature {
     flex-direction: column;
+}
+
+.icon {
+    padding: 20px;
 }
 
 .degree-section {

@@ -26,7 +26,7 @@ window.addEventListener('load', ()=>{
                     //set DOM Elements from API
                     temperatureDegree.textContent = Math.floor(temperature);
                     temperatureDescription.textContent = summary;
-                    locationTimezone.textContent = data.timezone;
+                    locationTimezone.textContent = setTimezoneText(data);
 
                     //formula for celsius
                     let celsius = (temperature - 32) * (5 / 9);
@@ -53,5 +53,13 @@ window.addEventListener('load', ()=>{
         const currentIcon = icon.replace(/-/g, "_").toUpperCase();
         skycons.play();
         return skycons.set(iconID, Skycons[currentIcon]);
+    }
+
+    function setTimezoneText(data){
+        var str = data.timezone;
+        var strArray = str.split("/");
+        var toSelect = strArray.length;
+        var newStr = strArray[toSelect -1] + ", " + strArray[toSelect -2];
+        return newStr;
     }
 });
