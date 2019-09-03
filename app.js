@@ -5,6 +5,7 @@ let temperatureDegree = document.querySelector('.temperature-degree');
 let locationTimezone = document.querySelector('.location-timezone');
 let temperatureSection = document.querySelector('.degree-section');
 let locationButton = document.getElementById('locationButton');
+let zipButton = document.getElementById('zipButton');
 const temperatureSpan = document.querySelector('.degree-section span');
 
 function getLocation (){
@@ -24,6 +25,21 @@ function getLocation (){
         getWeather(long, lat);
         setLocation(long, lat);
     }
+}
+
+function getLocationZip(zip){
+    const proxy = "https://cors-anywhere.herokuapp.com/";
+    const zipLocation = `${proxy}https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=AIzaSyDgkz55qvQ6bG36xW7MUjY0ORVDYqCi-Mw`;
+    fetch(zipLocation)
+        .then (fetchedZ => {
+            return fetchedZ.json();
+        })
+        .then(dataZ => {
+            lat = dataZ.results[0].geometry.location.lat;
+            long = dataZ.results[0].geometry.location.lng;
+            getWeather(long, lat);
+            setLocation(long, lat);
+        })
 }
 
 function setLocation(long, lat) {
@@ -87,11 +103,13 @@ function getWeather(long,lat){
                }
            });
            tz = data.timezone;
-           //setClock(tz);
            testVar = setInterval(setClock, 1000, tz);
            locationButton.addEventListener('click', ()=> {
                clearInterval(testVar);
            });
+           zipButton.addEventListener('click', ()=> {
+                clearInterval(testVar);
+        });
        });
 }
 
@@ -173,19 +191,32 @@ function setClock(tz){
             report(result.state);
         }
     });
-}*/
+}
 
 function report(state) {
     console.log('Permission ' + state);
-}
+}*/
 
 window.addEventListener('load', ()=>{
     getLocation();
-    setLocation();
 })
 
 locationButton.addEventListener("click", ()=>{
     clearInterval(setClock);
     getLocation();
-    setLocation();
 })
+
+zipButton.addEventListener("click", ()=>{
+    var zip = document.getElementById("text1").value;
+    clearInterval(setClock);
+    getLocationZip(zip);
+})
+
+document.getElementById("text1")
+    .addEventListener("keyup", function(event){
+        event.preventDefault();
+        if (event.keyCode == 13) {
+            document.getElementById("zipButton").click();
+        }
+});
+
