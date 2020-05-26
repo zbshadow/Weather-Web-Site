@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Simply Weather</title>
+</head>
+
+<body>
+    <div class ="find">
+        <button class="locationButton" id="locationButton">Use My Location</button>
+        <input type="text" class="text1" id="text1" name="text1" value="zip code" />
+        <button class="zipButton" id="zipButton">Go</button>
+    </div>
+
+    <div class="location">
+        <h1 class="location-timezone">Timezone</h1>
+        <canvas class="icon" width="128" height="128"></canvas>
+        <div class="temperature-description">It's friggin cold</div>
+    </div>
+    <div class="date">
+            <span id="dow"></span>
+            <span id="month"></span>
+            <span id="day"></span>
+        </div>
+    <div class="time">
+        <span id="hour"></span>
+        <span id="minute"></span>
+    </div>
+    <div class="temperature">
+        <div class="degree-section">
+            <h2 class="temperature-degree">34</h2>
+            <span>F</span>
+        </div>
+    </div>
+
+    <!--<script src="clock.js"></script>-->
+    <script src="skycons.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
